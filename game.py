@@ -7,14 +7,13 @@ from datetime import datetime
 
 pygame.init()
 
-#SETTING DISPLAY SCREEEN
-
+# DISPLAY SCREEEN
 screen=game_display=pygame.display.set_mode((500,1000))
 pygame.display.set_caption('First Game')
 
 
 
-
+#To Exit from the game
 def exit():
     for event in pygame.event.get():
         print(event)
@@ -22,6 +21,7 @@ def exit():
             pygame.quit()
             quit()
 
+#To Move the car.
 def move(carx,cary):
     for event in pygame.event.get():
         if (event.type==KEYDOWN and event.key == K_RIGHT and carx<=340):
@@ -31,6 +31,8 @@ def move(carx,cary):
         else:
             return carx,cary
     return (carx,cary)
+
+
 
 def update_points(points):
     fontObj = pygame.font.Font('freesansbold.ttf',64)
@@ -70,6 +72,8 @@ while True:
     screen.blit(villaincar,(a,b))
     screen.blit(car,(carx,cary))
     (carx,cary)=move(carx,cary)
+    
+    #If the car hit the villain car
     if ((a>carx-70 and a<=carx+90) and  b==cary):
         screen.fill(Black)
         fontObj = pygame.font.Font('freesansbold.ttf',34)
